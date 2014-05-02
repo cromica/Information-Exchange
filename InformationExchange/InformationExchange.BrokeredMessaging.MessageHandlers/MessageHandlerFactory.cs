@@ -37,7 +37,7 @@ namespace InformationExchange.BrokeredMessaging.MessageHandlers
             aggregateCatalog.Catalogs.Add(directoryCatalog);
 
             var compositionContainer = new CompositionContainer(aggregateCatalog,new ExportProvider[0]);
-            compositionContainer.ComposeParts(new object[] {_instance.Handlers});
+            compositionContainer.ComposeParts(new object[] {_instance});
 
         }
 
