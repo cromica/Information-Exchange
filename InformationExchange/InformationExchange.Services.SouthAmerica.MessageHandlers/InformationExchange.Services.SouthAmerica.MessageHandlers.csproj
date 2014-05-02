@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{171B0A25-74D5-4AAF-BAB4-7C8576255625}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{15C07B95-C3B8-4581-9CA3-02D327E725D7}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InformationExchange.Test</RootNamespace>
-    <AssemblyName>InformationExchange.Test</AssemblyName>
+    <RootNamespace>InformationExchange.Services.SouthAmerica.MessageHandlers</RootNamespace>
+    <AssemblyName>InformationExchange.Services.SouthAmerica.MessageHandlers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,9 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,21 +47,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="DataAccess\Country.cs">
+      <DependentUpon>Order.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Order.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Order.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Order.cs">
+      <DependentUpon>Order.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Order.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Order.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Order1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Order.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetOrder_Handler.cs" />
+    <Compile Include="OrderInformationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\com.iex.orders\com.iex.orders.csproj">
-      <Project>{aa322701-e1aa-42e3-94fe-1bad46800858}</Project>
+      <Project>{AA322701-E1AA-42E3-94FE-1BAD46800858}</Project>
       <Name>com.iex.orders</Name>
     </ProjectReference>
     <ProjectReference Include="..\InformationExchange.BrokeredMessaging.MessageHandlers\InformationExchange.BrokeredMessaging.MessageHandlers.csproj">
-      <Project>{b93f4da5-b4f6-4841-88c3-daebfdef33b3}</Project>
+      <Project>{B93F4DA5-B4F6-4841-88C3-DAEBFDEF33B3}</Project>
       <Name>InformationExchange.BrokeredMessaging.MessageHandlers</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataAccess\Order.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Order.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="DataAccess\Order.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Order.edmx</DependentUpon>
+      <LastGenOutput>Order.Context.cs</LastGenOutput>
+    </None>
+    <None Include="DataAccess\Order.edmx.diagram">
+      <DependentUpon>Order.edmx</DependentUpon>
+    </None>
+    <None Include="DataAccess\Order.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Order.edmx</DependentUpon>
+      <LastGenOutput>Order1.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
