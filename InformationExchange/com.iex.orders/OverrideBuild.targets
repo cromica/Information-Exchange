@@ -1,0 +1,12 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+
+  <PropertyGroup>
+    <SvcUtilPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v8.1A\bin\NETFX 4.5.1 Tools</SvcUtilPath>
+  </PropertyGroup>
+  
+  <Target Name="BeforeBuild">
+    <Exec Command='del Types\*.cs /F /Q' ContinueOnError="true"/>
+    <Exec Command='"$(SvcUtilPath)\svcutil" /ct:System.Collections.Generic.List`1 /dconly /serializer:xmlSerializer *.xsd /language:C# /serializable /o:Types\com.iex.orders.cs' />
+  </Target>
+  
+</Project>

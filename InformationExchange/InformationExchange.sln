@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange.OrderMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange.OrderManagementSouthAmerica", "OrderManagementUSA\InformationExchange.OrderManagementSouthAmerica.csproj", "{AEEC25A0-D8D0-4B6A-BCC8-A32BB44D8910}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{BB0921D8-C617-48B0-AC0C-516819C4C35A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EnterpriseSchema", "EnterpriseSchema", "{74BF22FF-E33D-4EBF-A419-D8D46CA5F7A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationSchema", "ApplicationSchema", "{8C595F33-DF2E-4F76-B298-0EC06F901A93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.iex.orders", "com.iex.orders\com.iex.orders.csproj", "{AA322701-E1AA-42E3-94FE-1BAD46800858}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,8 +33,17 @@ Global
 		{AEEC25A0-D8D0-4B6A-BCC8-A32BB44D8910}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEEC25A0-D8D0-4B6A-BCC8-A32BB44D8910}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEEC25A0-D8D0-4B6A-BCC8-A32BB44D8910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA322701-E1AA-42E3-94FE-1BAD46800858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA322701-E1AA-42E3-94FE-1BAD46800858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA322701-E1AA-42E3-94FE-1BAD46800858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA322701-E1AA-42E3-94FE-1BAD46800858}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{74BF22FF-E33D-4EBF-A419-D8D46CA5F7A1} = {BB0921D8-C617-48B0-AC0C-516819C4C35A}
+		{8C595F33-DF2E-4F76-B298-0EC06F901A93} = {BB0921D8-C617-48B0-AC0C-516819C4C35A}
+		{AA322701-E1AA-42E3-94FE-1BAD46800858} = {74BF22FF-E33D-4EBF-A419-D8D46CA5F7A1}
 	EndGlobalSection
 EndGlobal

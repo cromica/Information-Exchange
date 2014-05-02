@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="com.iex.orders.GetOrders"
+    targetNamespace="urn://com.iex.orders.GetOrders"
+    elementFormDefault="qualified"
+    xmlns="urn://com.iex.orders.GetOrders"
+    xmlns:mstns="urn://com.iex.orders.GetOrders"
+    xmlns:tns="urn://com.iex.orders.GetOrders"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:commonOrder="urn://com.iex.orders.Order"
+>
+  <xs:import namespace="urn://com.iex.orders.Order" schemaLocation="com.iex.orders.Order.xsd"/>
+  <xs:annotation>
+    <xs:documentation xml:lang="en">
+      Request/response pair for order information retrieval
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="OrderRequest" type="tns:OrderRequest" nillable="true"/>
+  <xs:element name="OrderResponse" type="tns:OrderResponse" nillable="true"/>
+  <xs:complexType name="OrderRequest">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Encapsulates the request for information for retrieving orders</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Region" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The region from where to gather the orders</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderResponse">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Encapsulates the response for orders.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Orders" type="commonOrder:ArrayOfOrders" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A collection of orders.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+</xs:schema>

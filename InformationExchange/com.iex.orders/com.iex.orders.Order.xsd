@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="com.iex.orders.Order"
+   targetNamespace="urn://com.iex.orders.Order"
+    elementFormDefault="qualified"
+    xmlns="urn:/com.iex.orders.Order"
+    xmlns:mstns="urn://com.iex.orders.Order"
+    xmlns:tns="urn://com.iex.orders.Order"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:annotation>
+    <xs:documentation xml:lang="en">
+      Definition of the Order type.
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="Order" type="tns:Order" nillable="true"/>
+  <xs:complexType name="Order">
+    <xs:annotation>
+      <xs:documentation>Information about an individual order.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Order unique identifier.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The Name of the order.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Items" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The number of items from an order.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Value" type="xs:decimal" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The value of the order.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Country" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The country where the order is originated.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Region" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The geographical region where the order is originated.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfOrders">
+    <xs:annotation>
+      <xs:documentation>A collection of orders view.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Order" type="tns:Order" nillable="true" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A collection of orders views for the relevant entity.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
