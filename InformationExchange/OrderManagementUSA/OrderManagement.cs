@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace OrderManagementUSA
 {
-    public partial class Form1 : Form
+    public partial class OrderManagement : Form
     {
-        public Form1()
+        public OrderManagement()
         {
             InitializeComponent();
         }
