@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange", "InformationExchange\InformationExchange.csproj", "{0DE410FE-D517-44EF-A027-5860BEE4C854}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange.OrderManagementEurope", "InformatioinExchange.OrderManagementEurope\InformationExchange.OrderManagementEurope.csproj", "{C316760E-E686-4803-8ED5-2A1BB6472C74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange.OrderManagementSouthAmerica", "InformationExchange.OrderManagementSouthAmerica\InformationExchange.OrderManagementSouthAmerica.csproj", "{AEEC25A0-D8D0-4B6A-BCC8-A32BB44D8910}"
@@ -15,16 +13,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationSchema", "Applic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.iex.orders", "com.iex.orders\com.iex.orders.csproj", "{AA322701-E1AA-42E3-94FE-1BAD46800858}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange.BrokeredMessaging.Contracts", "InformationExchange.BrokeredMessaging.Contracts\InformationExchange.BrokeredMessaging.Contracts.csproj", "{81A59632-BBE4-49B4-BC22-F1DBCE957DC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange.BrokeredMessaging.Services", "InformationExchange.BrokeredMessaging.Services\InformationExchange.BrokeredMessaging.Services.csproj", "{24CC1DF8-0F2C-43AC-AE8F-3832BB03A42E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange.BrokeredMessaging.MessageHandlers", "InformationExchange.BrokeredMessaging.MessageHandlers\InformationExchange.BrokeredMessaging.MessageHandlers.csproj", "{B93F4DA5-B4F6-4841-88C3-DAEBFDEF33B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0DE410FE-D517-44EF-A027-5860BEE4C854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DE410FE-D517-44EF-A027-5860BEE4C854}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DE410FE-D517-44EF-A027-5860BEE4C854}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0DE410FE-D517-44EF-A027-5860BEE4C854}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C316760E-E686-4803-8ED5-2A1BB6472C74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C316760E-E686-4803-8ED5-2A1BB6472C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C316760E-E686-4803-8ED5-2A1BB6472C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +37,18 @@ Global
 		{AA322701-E1AA-42E3-94FE-1BAD46800858}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA322701-E1AA-42E3-94FE-1BAD46800858}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA322701-E1AA-42E3-94FE-1BAD46800858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81A59632-BBE4-49B4-BC22-F1DBCE957DC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81A59632-BBE4-49B4-BC22-F1DBCE957DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81A59632-BBE4-49B4-BC22-F1DBCE957DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81A59632-BBE4-49B4-BC22-F1DBCE957DC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24CC1DF8-0F2C-43AC-AE8F-3832BB03A42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24CC1DF8-0F2C-43AC-AE8F-3832BB03A42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24CC1DF8-0F2C-43AC-AE8F-3832BB03A42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24CC1DF8-0F2C-43AC-AE8F-3832BB03A42E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B93F4DA5-B4F6-4841-88C3-DAEBFDEF33B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B93F4DA5-B4F6-4841-88C3-DAEBFDEF33B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B93F4DA5-B4F6-4841-88C3-DAEBFDEF33B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B93F4DA5-B4F6-4841-88C3-DAEBFDEF33B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

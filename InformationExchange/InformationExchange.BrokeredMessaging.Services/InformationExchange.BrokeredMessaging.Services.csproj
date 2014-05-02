@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0DE410FE-D517-44EF-A027-5860BEE4C854}</ProjectGuid>
+    <ProjectGuid>{24CC1DF8-0F2C-43AC-AE8F-3832BB03A42E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InformationExchange</RootNamespace>
-    <AssemblyName>InformationExchange</AssemblyName>
+    <RootNamespace>InformationExchange.BrokeredMessaging.Services</RootNamespace>
+    <AssemblyName>InformationExchange.BrokeredMessaging.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,12 +29,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,18 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrokeredMessageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\com.iex.orders\com.iex.orders.csproj">
-      <Project>{aa322701-e1aa-42e3-94fe-1bad46800858}</Project>
-      <Name>com.iex.orders</Name>
+    <ProjectReference Include="..\InformationExchange.BrokeredMessaging.Contracts\InformationExchange.BrokeredMessaging.Contracts.csproj">
+      <Project>{81A59632-BBE4-49B4-BC22-F1DBCE957DC8}</Project>
+      <Name>InformationExchange.BrokeredMessaging.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InformationExchange.BrokeredMessaging.MessageHandlers\InformationExchange.BrokeredMessaging.MessageHandlers.csproj">
+      <Project>{B93F4DA5-B4F6-4841-88C3-DAEBFDEF33B3}</Project>
+      <Name>InformationExchange.BrokeredMessaging.MessageHandlers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
