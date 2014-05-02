@@ -1,4 +1,4 @@
-﻿namespace InformatioinExchange.OrderManagementEurope
+﻿namespace InformationExchange.OrderManagementEurope
 {
     partial class OrderForm
     {

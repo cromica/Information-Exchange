@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InformatioinExchange.OrderManagementEurope
+namespace InformationExchange.OrderManagementEurope
 {
     static class Program
     {

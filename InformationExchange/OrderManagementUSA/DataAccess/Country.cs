@@ -7,17 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InformationExchange.OrderManagementEurope.DataAccess
+namespace InformationExchange.OrderManagementSouthAmerica.DataAccess
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class Country
     {
-        public int Id { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
-        public int Items { get; set; }
-        public decimal Value { get; set; }
-        public string Country { get; set; }
     }
 }

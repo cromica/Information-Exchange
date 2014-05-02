@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InformationExchange.OrderManagementEurope.DataAccess
+namespace InformationExchange.OrderManagementSouthAmerica.DataAccess
 {
     using System;
     using System.Data.Entity;
@@ -26,5 +26,6 @@ namespace InformationExchange.OrderManagementEurope.DataAccess
         }
     
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Country> Countries { get; set; }
     }
 }
