@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange", "Info
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange.OrderManagementEurope", "InformatioinExchange.OrderManagementEurope\InformationExchange.OrderManagementEurope.csproj", "{C316760E-E686-4803-8ED5-2A1BB6472C74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange.OrderManagementSouthAmerica", "OrderManagementUSA\InformationExchange.OrderManagementSouthAmerica.csproj", "{AEEC25A0-D8D0-4B6A-BCC8-A32BB44D8910}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationExchange.OrderManagementSouthAmerica", "InformationExchange.OrderManagementSouthAmerica\InformationExchange.OrderManagementSouthAmerica.csproj", "{AEEC25A0-D8D0-4B6A-BCC8-A32BB44D8910}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{BB0921D8-C617-48B0-AC0C-516819C4C35A}"
 EndProject
