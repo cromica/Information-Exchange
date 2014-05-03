@@ -41,13 +41,12 @@ namespace InformationExchange.BrokeredMessaging.MessageHandlers
 
         }
 
-        public static IMessageHandler GetHandler(BrokeredMessage message)
+        public static IMessageHandler GetHandler(string messageType)
         {
             IMessageHandler configuredMessagehandler = null;
             var handlers = from h in _instance.Handlers
                            where
-                               h.Metadata.HandledMessageType ==
-                               message.MessageType
+                               h.Metadata.HandledMessageType == messageType
                            select h;
             if (handlers.Any())
             {

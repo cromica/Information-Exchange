@@ -25,7 +25,7 @@ namespace InformationExchange.BrokeredMessaging.Services
             }
 
             //get the appropriate message handler for the message
-            IMessageHandler handler = MessageHandlerFactory.GetHandler(message);
+            var handler = MessageHandlerFactory.GetHandler(message.MessageType);
 
             var returnMessage = handler.HandleMessage(message);
 
