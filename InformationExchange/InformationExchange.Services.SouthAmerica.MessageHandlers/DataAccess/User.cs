@@ -12,16 +12,16 @@ namespace InformationExchange.Services.SouthAmerica.MessageHandlers.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class User
     {
-        public System.Guid Id { get; set; }
-        public string Name { get; set; }
-        public int Items { get; set; }
-        public decimal Value { get; set; }
-        public string Country_Code { get; set; }
-        public int UserId { get; set; }
+        public User()
+        {
+            this.Orders = new HashSet<Order>();
+        }
     
-        public virtual Country Country { get; set; }
-        public virtual User User { get; set; }
+        public int Id { get; set; }
+        public string UserName { get; set; }
+    
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

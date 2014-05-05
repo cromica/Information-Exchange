@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using InformationExchange.Services.SouthAmerica.MessageHandlers.DataAccess;
 using com.iex.orders.getorders;
 using com.iex.orders.order;
+using com.iex.orders.saveuser;
 
 namespace InformationExchange.Services.SouthAmerica.MessageHandlers
 {
@@ -35,5 +36,19 @@ namespace InformationExchange.Services.SouthAmerica.MessageHandlers
 
             return response;
         }
+
+		public int SaveUser(UserRequest userRequest)
+		{
+			var context = new OrderManagementSouthAmericaEntities();
+
+			var user = new User()
+			{
+				UserName = userRequest.UserName
+			};
+
+			context.Users.Add(user);
+
+			return context.SaveChanges();
+		}
     }
 }

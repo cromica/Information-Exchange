@@ -18,7 +18,9 @@ namespace InformationExchange.OrderManagementSouthAmerica.DataAccess
         public string Name { get; set; }
         public int Items { get; set; }
         public decimal Value { get; set; }
+        public int UserId { get; set; }
     
         public virtual Country Country { get; set; }
+        public virtual User User { get; set; }
     }
 }

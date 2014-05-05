@@ -9,11 +9,13 @@ namespace InformationExchange.ServiceBus.Host
     public class ServiceBusManager
     {
         private List<MessageProcessor> _messageProcessors;
+		private List<Task> _tasks;
         public void Configure()
         {
           var connString = ConfigurationManager.ConnectionStrings["ServiceBusConnection"];
           var entityPathsStr = ConfigurationManager.AppSettings["EntityPaths"];
             _messageProcessors = new List<MessageProcessor>();
+			_tasks = new List<Task>();
             //retrieve subscription pairs formed from entity path and forwarder
             var entityPaths = entityPathsStr.Split(',');
             foreach (var entityPath in entityPaths)
@@ -36,9 +38,7 @@ namespace InformationExchange.ServiceBus.Host
                     {
                         messageProcessor.Enabled = true;
 						Console.WriteLine("Enabled {0} message processor", messageProcessor.Path);
-                        messageProcessor.Start();
-						
-
+						_tasks.Add(Task.Factory.StartNew(new Action(messageProcessor.Start)));
                     });
             }
         }
@@ -51,6 +51,9 @@ namespace InformationExchange.ServiceBus.Host
                 {
                     messageProcessor.Enabled = false;
                 });
+
+				_tasks = new List<Task>();
+				_messageProcessors = new List<MessageProcessor>();
             }
           
         }

@@ -30,11 +30,11 @@
         {
 			this.components = new System.ComponentModel.Container();
 			this.gvOrders = new System.Windows.Forms.DataGridView();
+			this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.groupBoxOrders = new System.Windows.Forms.GroupBox();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.btnRemove = new System.Windows.Forms.Button();
 			this.pnlButtons = new System.Windows.Forms.Panel();
-			this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.itemsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,9 +42,9 @@
 			this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.gvOrders)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
 			this.groupBoxOrders.SuspendLayout();
 			this.pnlButtons.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gvOrders
@@ -64,6 +64,11 @@
 			this.gvOrders.RowTemplate.ReadOnly = true;
 			this.gvOrders.Size = new System.Drawing.Size(923, 452);
 			this.gvOrders.TabIndex = 0;
+			// 
+			// orderBindingSource
+			// 
+			this.orderBindingSource.AllowNew = false;
+			this.orderBindingSource.DataSource = typeof(InformationExchange.OrderManagementEurope.DataAccess.Order);
 			// 
 			// groupBoxOrders
 			// 
@@ -107,11 +112,6 @@
 			this.pnlButtons.Name = "pnlButtons";
 			this.pnlButtons.Size = new System.Drawing.Size(929, 29);
 			this.pnlButtons.TabIndex = 4;
-			// 
-			// orderBindingSource
-			// 
-			this.orderBindingSource.AllowNew = false;
-			this.orderBindingSource.DataSource = typeof(InformationExchange.OrderManagementEurope.DataAccess.Order);
 			// 
 			// idDataGridViewTextBoxColumn
 			// 
@@ -165,9 +165,9 @@
 			this.Name = "OrderManagement";
 			this.Text = "Order Management Europe";
 			((System.ComponentModel.ISupportInitialize)(this.gvOrders)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
 			this.groupBoxOrders.ResumeLayout(false);
 			this.pnlButtons.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
 			this.ResumeLayout(false);
 
         }

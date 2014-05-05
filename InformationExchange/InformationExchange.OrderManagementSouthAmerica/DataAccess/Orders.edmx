@@ -8,9 +8,14 @@
   <EntityContainer Name="OrdersStoreContainer">
     <EntitySet Name="Orders" EntityType="Orders.Store.Orders" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Countries" EntityType="Orders.Store.Countries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Orders.Store.Users" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="OrderCountry" Association="Orders.Store.OrderCountry">
       <End Role="Order" EntitySet="Orders" />
       <End Role="Country" EntitySet="Countries" />
+    </AssociationSet>
+    <AssociationSet Name="UserOrder" Association="Orders.Store.UserOrder">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Order" EntitySet="Orders" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Orders">
@@ -21,6 +26,7 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Items" Type="int" Nullable="false" />
     <Property Name="Value" Type="decimal" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="Country_Code" Type="nvarchar" MaxLength="3" Nullable="false" />
   </EntityType>
   <EntityType Name="Countries">
@@ -29,6 +35,13 @@
     </Key>
     <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="3" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="OrderCountry">
     <End Role="Order" Type="Orders.Store.Orders" Multiplicity="*" />
@@ -39,6 +52,18 @@
       </Principal>
       <Dependent Role="Order">
         <PropertyRef Name="Country_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserOrder">
+    <End Role="User" Type="Orders.Store.Users" Multiplicity="1" />
+    <End Role="Order" Type="Orders.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -53,6 +78,11 @@
             <End Role="Order" EntitySet="Orders" />
             <End Role="Country" EntitySet="Countries" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="Orders.User" />
+          <AssociationSet Name="UserOrder" Association="Orders.UserOrder">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Order">
           <Key>
@@ -63,6 +93,8 @@
           <Property Type="Int32" Name="Items" Nullable="false" />
           <Property Type="Decimal" Name="Value" Nullable="false" />
           <NavigationProperty Name="Country" Relationship="Orders.OrderCountry" FromRole="Order" ToRole="Country" />
+          <NavigationProperty Name="User" Relationship="Orders.UserOrder" FromRole="Order" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -74,6 +106,26 @@
         <Association Name="OrderCountry">
           <End Type="Orders.Order" Role="Order" Multiplicity="*" />
           <End Type="Orders.Country" Role="Country" Multiplicity="1" />
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Orders.UserOrder" FromRole="User" ToRole="Order" />
+        </EntityType>
+        <Association Name="UserOrder">
+          <End Type="Orders.User" Role="User" Multiplicity="1" />
+          <End Type="Orders.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -88,6 +140,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Items" ColumnName="Items" />
           <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -96,6 +149,14 @@
         <MappingFragment StoreEntitySet="Countries">
           <ScalarProperty Name="Code" ColumnName="Code" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Orders.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -122,6 +183,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="OrderManagementSouthAmericaModel.Country" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderManagementSouthAmericaModel.Order" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="OrderManagementSouthAmericaModel.FK_OrderCountry" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OrderManagementSouthAmericaModel.User" Width="1.5" PointX="0.75" PointY="4.875" />
+        <AssociationConnector Association="OrderManagementSouthAmericaModel.FK_UserOrder" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

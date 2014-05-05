@@ -4,20 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OrderManagementSouthAmericaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="OrderManagementSouthAmericaModelStoreContainer">
-          <EntitySet Name="Countries" EntityType="OrderManagementSouthAmericaModel.Store.Countries" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Orders" EntityType="OrderManagementSouthAmericaModel.Store.Orders" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_OrderCountry" Association="OrderManagementSouthAmericaModel.Store.FK_OrderCountry">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="OrderManagementSouthAmericaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Countries">
           <Key>
             <PropertyRef Name="Code" />
           </Key>
-          <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="3" />
+          <Property Name="Code" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
@@ -27,12 +19,20 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Items" Type="int" Nullable="false" />
-          <Property Name="Value" Type="decimal" Nullable="false" />
-          <Property Name="Country_Code" Type="nvarchar" Nullable="false" MaxLength="3" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Country_Code" Type="nvarchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK_OrderCountry">
-          <End Role="Countries" Type="OrderManagementSouthAmericaModel.Store.Countries" Multiplicity="1" />
-          <End Role="Orders" Type="OrderManagementSouthAmericaModel.Store.Orders" Multiplicity="*" />
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Countries">
               <PropertyRef Name="Code" />
@@ -42,8 +42,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+        <Association Name="FK_UserOrder">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OrderManagementSouthAmericaModelStoreContainer">
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_OrderCountry" Association="Self.FK_OrderCountry">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserOrder" Association="Self.FK_UserOrder">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OrderManagementSouthAmericaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -53,6 +77,11 @@
           <AssociationSet Name="FK_OrderCountry" Association="OrderManagementSouthAmericaModel.FK_OrderCountry">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="OrderManagementSouthAmericaModel.User" />
+          <AssociationSet Name="FK_UserOrder" Association="OrderManagementSouthAmericaModel.FK_UserOrder">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Country">
@@ -73,6 +102,8 @@
           <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Country_Code" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Country" Relationship="OrderManagementSouthAmericaModel.FK_OrderCountry" FromRole="Orders" ToRole="Countries" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="OrderManagementSouthAmericaModel.FK_UserOrder" FromRole="Order" ToRole="User" />
         </EntityType>
         <Association Name="FK_OrderCountry">
           <End Role="Countries" Type="OrderManagementSouthAmericaModel.Country" Multiplicity="1" />
@@ -83,6 +114,26 @@
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="Country_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="OrderManagementSouthAmericaModel.FK_UserOrder" FromRole="User" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_UserOrder">
+          <End Type="OrderManagementSouthAmericaModel.User" Role="User" Multiplicity="1" />
+          <End Type="OrderManagementSouthAmericaModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -103,11 +154,20 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="OrderManagementSouthAmericaModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Items" ColumnName="Items" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Country_Code" ColumnName="Country_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="OrderManagementSouthAmericaModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -128,6 +188,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -13,7 +13,8 @@ namespace InformationExchange.ServiceBus.Host
 		{
 
 			new ServiceBusService().Start();
-
+			Console.WriteLine("Listening on Azure Service Bus");
+			Console.ReadLine();
 		}
 	}
 }

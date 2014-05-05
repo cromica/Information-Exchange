@@ -30,7 +30,6 @@
         {
 			this.components = new System.ComponentModel.Container();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.lblCountry = new System.Windows.Forms.Label();
 			this.lblValue = new System.Windows.Forms.Label();
 			this.lblItems = new System.Windows.Forms.Label();
 			this.txtName = new System.Windows.Forms.TextBox();
@@ -39,6 +38,7 @@
 			this.lblName = new System.Windows.Forms.Label();
 			this.btnSave = new System.Windows.Forms.Button();
 			this.cbCountries = new System.Windows.Forms.ComboBox();
+			this.lblCountry = new System.Windows.Forms.Label();
 			this.lblUser = new System.Windows.Forms.Label();
 			this.cbUsers = new System.Windows.Forms.ComboBox();
 			this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -72,17 +72,8 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(462, 227);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(462, 247);
 			this.tableLayoutPanel1.TabIndex = 0;
-			// 
-			// lblCountry
-			// 
-			this.lblCountry.AutoSize = true;
-			this.lblCountry.Location = new System.Drawing.Point(3, 120);
-			this.lblCountry.Name = "lblCountry";
-			this.lblCountry.Size = new System.Drawing.Size(43, 13);
-			this.lblCountry.TabIndex = 8;
-			this.lblCountry.Text = "Country";
 			// 
 			// lblValue
 			// 
@@ -164,6 +155,15 @@
 			this.cbCountries.Size = new System.Drawing.Size(225, 21);
 			this.cbCountries.TabIndex = 3;
 			// 
+			// lblCountry
+			// 
+			this.lblCountry.AutoSize = true;
+			this.lblCountry.Location = new System.Drawing.Point(3, 120);
+			this.lblCountry.Name = "lblCountry";
+			this.lblCountry.Size = new System.Drawing.Size(43, 13);
+			this.lblCountry.TabIndex = 8;
+			this.lblCountry.Text = "Country";
+			// 
 			// lblUser
 			// 
 			this.lblUser.AutoSize = true;
@@ -187,13 +187,14 @@
 			// 
 			// userBindingSource
 			// 
+			this.userBindingSource.AllowNew = false;
 			this.userBindingSource.DataSource = typeof(InformationExchange.OrderManagementEurope.DataAccess.User);
 			// 
 			// OrderForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(462, 227);
+			this.ClientSize = new System.Drawing.Size(462, 247);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Name = "OrderForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

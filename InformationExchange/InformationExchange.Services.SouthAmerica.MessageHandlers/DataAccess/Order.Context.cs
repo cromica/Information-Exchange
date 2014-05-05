@@ -27,5 +27,6 @@ namespace InformationExchange.Services.SouthAmerica.MessageHandlers.DataAccess
     
         public DbSet<Country> Countries { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

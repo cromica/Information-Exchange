@@ -27,5 +27,6 @@ namespace InformationExchange.OrderManagementSouthAmerica.DataAccess
     
         public DbSet<Order> Orders { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
