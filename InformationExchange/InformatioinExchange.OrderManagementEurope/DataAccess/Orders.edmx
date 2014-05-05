@@ -7,6 +7,11 @@
     <Schema Namespace="Orders.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="OrdersStoreContainer">
     <EntitySet Name="Orders" EntityType="Orders.Store.Orders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Orders.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="OrderUser" Association="Orders.Store.OrderUser">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Orders">
     <Key>
@@ -17,13 +22,38 @@
     <Property Name="Items" Type="int" Nullable="false" />
     <Property Name="Value" Type="decimal" Nullable="false" />
     <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="OrderUser">
+    <End Role="Order" Type="Orders.Store.Orders" Multiplicity="*" />
+    <End Role="User" Type="Orders.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Orders" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="OrdersContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Orders" EntityType="Orders.Order" />
+          <EntitySet Name="Users" EntityType="Orders.User" />
+          <AssociationSet Name="OrderUser" Association="Orders.OrderUser">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Order">
           <Key>
@@ -34,7 +64,29 @@
           <Property Type="Int32" Name="Items" Nullable="false" />
           <Property Type="Decimal" Name="Value" Nullable="false" />
           <Property Type="String" Name="Country" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Orders.OrderUser" FromRole="Order" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Orders.OrderUser" FromRole="User" ToRole="Order" />
+        </EntityType>
+        <Association Name="OrderUser">
+          <End Type="Orders.Order" Role="Order" Multiplicity="*" />
+          <End Type="Orders.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -49,6 +101,15 @@
           <ScalarProperty Name="Items" ColumnName="Items" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Orders.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -67,6 +128,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

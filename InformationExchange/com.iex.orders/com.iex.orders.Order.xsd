@@ -23,27 +23,27 @@
           <xs:documentation>Order unique identifier.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Name" type="xs:string" nillable="true" minOccurs="0">
+      <xs:element name="Name" type="xs:string" nillable="false" minOccurs="0">
         <xs:annotation>
           <xs:documentation>The Name of the order.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Items" type="xs:integer" nillable="true" minOccurs="0">
+      <xs:element name="Items" type="xs:integer" nillable="false" minOccurs="0">
         <xs:annotation>
           <xs:documentation>The number of items from an order.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Value" type="xs:decimal" nillable="true" minOccurs="0">
+      <xs:element name="Value" type="xs:decimal" nillable="false" minOccurs="0">
         <xs:annotation>
           <xs:documentation>The value of the order.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Country" type="xs:string" nillable="true" minOccurs="0">
+      <xs:element name="Country" type="xs:string" nillable="false" minOccurs="0">
         <xs:annotation>
           <xs:documentation>The country where the order is originated.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Region" type="xs:string" nillable="true" minOccurs="0">
+      <xs:element name="Region" type="xs:string" nillable="false" minOccurs="0">
         <xs:annotation>
           <xs:documentation>The geographical region where the order is originated.</xs:documentation>
         </xs:annotation>

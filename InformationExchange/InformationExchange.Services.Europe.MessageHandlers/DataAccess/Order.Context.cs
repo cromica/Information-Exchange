@@ -26,5 +26,6 @@ namespace InformationExchange.Services.Europe.MessageHandlers.DataAccess
         }
     
         public DbSet<Order> Orders { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

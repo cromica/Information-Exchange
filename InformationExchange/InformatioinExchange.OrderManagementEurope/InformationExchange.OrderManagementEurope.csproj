@@ -88,6 +88,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Orders.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\User.cs">
+      <DependentUpon>Orders.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserExtension.cs" />
     <Compile Include="OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +141,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\InformatioinExchange.OrderManagementEurope.DataAccess.Order.datasource" />
+    <None Include="Properties\DataSources\InformationExchange.OrderManagementEurope.DataAccess.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

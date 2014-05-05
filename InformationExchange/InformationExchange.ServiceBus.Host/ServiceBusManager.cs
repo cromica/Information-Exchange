@@ -35,9 +35,11 @@ namespace InformationExchange.ServiceBus.Host
                 _messageProcessors.ForEach(messageProcessor =>
                     {
                         messageProcessor.Enabled = true;
+						Console.WriteLine("Enabled {0} message processor", messageProcessor.Path);
                         messageProcessor.Start();
+						
+
                     });
-               
             }
         }
 

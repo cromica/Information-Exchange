@@ -65,9 +65,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Order.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\User.cs">
+      <DependentUpon>Order.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetOrder_Handler.cs" />
     <Compile Include="OrderInformationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveUser_Handler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\com.iex.orders\com.iex.orders.csproj">

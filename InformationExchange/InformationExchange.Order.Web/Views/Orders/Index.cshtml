@@ -1,0 +1,20 @@
+﻿@model List<InformationExchange.Order.Web.Models.OrderView>
+
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h1><small>Orders</small></h1>
+        <div class="list-group">
+            @foreach (var order in Model)
+            {
+                <a href="#" class="list-group-item active"> @order.Name </a>
+                  <a href="#" class="list-group-item active"> @order.Region </a>
+                  <a href="#" class="list-group-item active"> @order.Country </a>
+            }
+        </div>
+    </div>
+</div>

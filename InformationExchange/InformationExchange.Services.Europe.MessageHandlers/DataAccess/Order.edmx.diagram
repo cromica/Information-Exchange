@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="2c261e6d2af34b41b8b4f9108133847c" Name="Diagram1">
         <EntityTypeShape EntityType="OrderManagementEuropeModel.Order" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderManagementEuropeModel.User" Width="1.5" PointX="0.75" PointY="4.125" />
+        <AssociationConnector Association="OrderManagementEuropeModel.FK_OrderUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

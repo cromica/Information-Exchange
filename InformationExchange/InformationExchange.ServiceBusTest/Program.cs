@@ -19,53 +19,42 @@ namespace InformationExchange.ServiceBusTest
         static void Main(string[] args)
         {
 
-            var topic = "ordermanagement";
-            const string MessageType = "urn://com.iex.orders.GetOrders#OrderRequest";
-            var request = new OrderRequest();
-            request.Region = "Europe";
-            var connString = CloudConfigurationManager.GetSetting("Microsoft.ServiceBus.ConnectionString");
-           var namespaceMgr =  NamespaceManager.CreateFromConnectionString(connString);
+           // var topic = "ordermanagement";
+           // const string MessageType = "urn://com.iex.orders.GetOrders#OrderRequest";
+           // var request = new OrderRequest();
+           // request.Region = "Europe";
+           // var connString = CloudConfigurationManager.GetSetting("Microsoft.ServiceBus.ConnectionString");
+           //var namespaceMgr =  NamespaceManager.CreateFromConnectionString(connString);
 
             
-            var jsonSettings = new JsonSerializerSettings()
-            {
-                Converters = new JsonConverter[] { new StringEnumConverter() },
-                ContractResolver = new CustomContractResolver()
-            };
-            var req = JsonConvert.SerializeObject(request, jsonSettings);
-            var memoryStream = new MemoryStream();
-            var streamWriter = new StreamWriter(memoryStream);
-            streamWriter.Write(req);
-            streamWriter.Flush();
-            memoryStream.Flush();
-            memoryStream.Seek(0, SeekOrigin.Begin);
+           // var jsonSettings = new JsonSerializerSettings()
+           // {
+           //     Converters = new JsonConverter[] { new StringEnumConverter() },
+           //     ContractResolver = new CustomContractResolver()
+           // };
+           // var req = JsonConvert.SerializeObject(request, jsonSettings);
+           // var memoryStream = new MemoryStream();
+           // var streamWriter = new StreamWriter(memoryStream);
+           // streamWriter.Write(req);
+           // streamWriter.Flush();
+           // memoryStream.Flush();
+           // memoryStream.Seek(0, SeekOrigin.Begin);
 
-            var bMessage = new BrokeredMessage(memoryStream,false);
-            bMessage.Properties.Add("region",request.Region);
-            bMessage.Label = MessageType;
-            bMessage.ContentType = "text/json";
-            bMessage.ReplyTo = "ordermanagementresponse";
-            bMessage.ReplyToSessionId = "1";
+           // var bMessage = new BrokeredMessage(memoryStream,false);
+           // bMessage.Properties.Add("region",request.Region);
+           // bMessage.Label = MessageType;
+           // bMessage.ContentType = "text/json";
+           // bMessage.ReplyTo = "ordermanagementresponse";
+           // bMessage.ReplyToSessionId = "1";
 
             
             
-            var topicClient = TopicClient.Create(topic);
+           // var topicClient = TopicClient.Create(topic);
 
-            topicClient.Send(bMessage);
+           // topicClient.Send(bMessage);
 
         }
     }
 
-    public class CustomContractResolver : DefaultContractResolver
-    {
-        protected override JsonContract CreateContract(Type objectType)
-        {
-            JsonContract jsonContract = base.CreateContract(objectType);
-            if (!(jsonContract is JsonStringContract))
-            {
-                return jsonContract;
-            }
-            return this.CreateObjectContract(objectType);
-        }
-    }
+    
 }

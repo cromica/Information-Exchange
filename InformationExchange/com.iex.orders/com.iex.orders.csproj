@@ -52,6 +52,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="com.iex.orders.SaveUser.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="OverrideBuild.targets" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

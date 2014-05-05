@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="com.iex.orders.SaveUser"
+    targetNamespace="urn://com.iex.orders.SaveUser"
+    elementFormDefault="qualified"
+    xmlns="urn://com.iex.orders.SaveUser"
+    xmlns:mstns="urn://com.iex.orders.SaveUser"
+    xmlns:tns="urn://com.iex.orders.SaveUser"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+ >
+  <xs:annotation>
+    <xs:documentation xml:lang="en">
+      User information to be saved
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="UserRequest" type="tns:UserRequest" nillable="true"/>
+  <xs:complexType name="UserRequest">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Encapsulates the request for information for saving user</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="UserName" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The user name of the user</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

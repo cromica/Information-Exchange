@@ -10,6 +10,7 @@
 
 [assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn://com.iex.orders.GetOrders", ClrNamespace="com.iex.orders.getorders")]
 [assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn://com.iex.orders.Order", ClrNamespace="com.iex.orders.order")]
+[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn://com.iex.orders.SaveUser", ClrNamespace="com.iex.orders.saveuser")]
 
 namespace com.iex.orders.getorders
 {
@@ -27,7 +28,7 @@ namespace com.iex.orders.getorders
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private string RegionField;
+        private string UserNameField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -42,15 +43,15 @@ namespace com.iex.orders.getorders
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public string Region
+        public string UserName
         {
             get
             {
-                return this.RegionField;
+                return this.UserNameField;
             }
             set
             {
-                this.RegionField = value;
+                this.UserNameField = value;
             }
         }
     }
@@ -124,10 +125,10 @@ namespace com.iex.orders.order
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<long> ItemsField;
+        private long ItemsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> ValueField;
+        private decimal ValueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CountryField;
@@ -160,7 +161,7 @@ namespace com.iex.orders.order
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
         public string Name
         {
             get
@@ -174,7 +175,7 @@ namespace com.iex.orders.order
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-        public System.Nullable<long> Items
+        public long Items
         {
             get
             {
@@ -187,7 +188,7 @@ namespace com.iex.orders.order
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-        public System.Nullable<decimal> Value
+        public decimal Value
         {
             get
             {
@@ -199,7 +200,7 @@ namespace com.iex.orders.order
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
         public string Country
         {
             get
@@ -212,7 +213,7 @@ namespace com.iex.orders.order
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
         public string Region
         {
             get
@@ -222,6 +223,50 @@ namespace com.iex.orders.order
             set
             {
                 this.RegionField = value;
+            }
+        }
+    }
+}
+namespace com.iex.orders.saveuser
+{
+    using System.Runtime.Serialization;
+    using System;
+    
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserRequest", Namespace="urn://com.iex.orders.SaveUser")]
+    [System.SerializableAttribute()]
+    public partial class UserRequest : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string UserNameField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public string UserName
+        {
+            get
+            {
+                return this.UserNameField;
+            }
+            set
+            {
+                this.UserNameField = value;
             }
         }
     }

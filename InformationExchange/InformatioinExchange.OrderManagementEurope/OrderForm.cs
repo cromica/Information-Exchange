@@ -20,6 +20,12 @@ namespace InformationExchange.OrderManagementEurope
             InitializeComponent();
         }
 
+		protected override void OnLoad(EventArgs e)
+		{
+			var oc = new OrdersContainer();
+			userBindingSource.DataSource = oc.Users.ToList();
+		}
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtName.Text))
@@ -42,7 +48,11 @@ namespace InformationExchange.OrderManagementEurope
                 MessageBox.Show("Country is empty");
                 return;
             }
-
+			if (cbUsers.SelectedItem == null)
+			{
+				MessageBox.Show("User is empty");
+				return;
+			}
             var order = new Order
                 {
                     Name = txtName.Text,
