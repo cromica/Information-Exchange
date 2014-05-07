@@ -7,14 +7,53 @@
 
 <div class="container">
     <div class="row">
-        <h1><small>Orders</small></h1>
-        <div class="list-group">
-            @foreach (var order in Model)
-            {
-                <a href="#" class="list-group-item active"> @order.Name </a>
-                  <a href="#" class="list-group-item active"> @order.Region </a>
-                  <a href="#" class="list-group-item active"> @order.Country </a>
-            }
+        <br />
+        <div class="panel panel-default">
+            <div class="panel-heading"> Orders</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Items
+                        </th>
+                        <th>
+                            Value
+                        </th>
+                        <th>
+                            Region
+                        </th>
+                        <th>
+                            Country
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                   @foreach (var order in Model)
+                   {
+                       <tr>
+                           <td>
+                               @order.Name
+                           </td>
+                           <td>
+                               @order.Items
+                           </td>
+                           <td>
+                               @order.Value
+                           </td>
+                           <td>
+                               @order.Region
+                           </td>
+                           <td>
+                               @order.Country
+                           </td>
+                       </tr>
+                   }
+                </tbody>
+            </table>
         </div>
+      
     </div>
 </div>
