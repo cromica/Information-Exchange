@@ -54,20 +54,20 @@ namespace InformationExchange.OrderManagementEurope
 				return;
 			}
 
-
+            var user = (User) cbUsers.SelectedItem;
             var order = new Order
                 {
                     Name = txtName.Text,
                     Items = Int32.Parse(txtItems.Text),
                     Value = Decimal.Parse(txtValue.Text),
                     Country = cbCountries.SelectedItem.ToString(),
-					UserId = ((User)cbUsers.SelectedItem).Id
+					UserId = user.Id
                 };
 
             var oc = new OrdersContainer();
             oc.Orders.Add(order);
             oc.SaveChanges();
-
+            order.User = user;
             Order = order;
 
             Close();

@@ -62,14 +62,14 @@ namespace InformationExchange.OrderManagementSouthAmerica
 			if (country != null)
 			{
 				var existingCountry = oc.Countries.Find(country.Code);
-
+			    var user = (User) cbUser.SelectedItem;
 				var order = new Order
 					{
 						Name = txtName.Text,
 						Items = Int32.Parse(txtItems.Text),
 						Value = Decimal.Parse(txtValue.Text),
 						Country = existingCountry,
-						UserId = ((User)cbUser.SelectedItem).Id
+				        UserId = user.Id
 					};
 
 
@@ -77,7 +77,7 @@ namespace InformationExchange.OrderManagementSouthAmerica
 
 				oc.Orders.Add(order);
 				oc.SaveChanges();
-
+			    order.User = user;
 				Order = order;
 			}
 
