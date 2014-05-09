@@ -20,6 +20,8 @@ namespace InformationExchange.Services.Europe.MessageHandlers
 			var context = new OrderManagementEuropeEntities();
 			var user = context.Users.FirstOrDefault(u => u.UserName == request.UserName);
 
+		    if (user == null) return response;
+
 			var orders = context.Orders.Where(order => order.UserId == user.Id).ToList();
 			orders.ForEach(order =>
 				{

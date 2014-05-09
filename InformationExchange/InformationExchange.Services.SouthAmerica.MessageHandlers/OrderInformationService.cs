@@ -18,7 +18,12 @@ namespace InformationExchange.Services.SouthAmerica.MessageHandlers
             var response = new OrderResponse { Orders = new ArrayOfOrders() };
 
             var context = new OrderManagementSouthAmericaEntities();
-            var orders = context.Orders.ToList();
+
+            var user = context.Users.FirstOrDefault(u => u.UserName == request.UserName);
+
+            if (user == null) return response;
+
+            var orders = context.Orders.Where(order => order.UserId == user.Id).ToList();
             orders.ForEach(order =>
             {
                 var responseOrder = new com.iex.orders.order.Order
